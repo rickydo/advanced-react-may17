@@ -1,4 +1,5 @@
 import React from 'react';
+import Key from 'key';
 
 export default class Game extends React.Component {
   render() {
@@ -9,12 +10,12 @@ export default class Game extends React.Component {
         </div>
         <div className="target">42</div>
         <div className="challenge-numbers">
-          <div className="number">8</div>
-          <div className="number">5</div>
-          <div className="number">12</div>
-          <div className="number">13</div>
-          <div className="number">5</div>
-          <div className="number">16</div>
+          <Key value={8} />
+          <Key value={5} />
+          <Key value={12} />
+          <Key value={13} />
+          <Key value={5} />
+          <Key value={16} />
         </div>
         <div className="footer">
           <div className="timer-value">15</div>
