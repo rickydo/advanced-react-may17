@@ -1,21 +1,22 @@
-import React from 'react';
-import Key from 'key';
+import React, { Component } from 'react';
 
-export default class Game extends React.Component {
+import Key from './Key';
+
+const randomNumberBetween = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+class Game extends Component {
+  // not part of the state, just onload
+  challengeKeys = Array.from({ length: 6 }).map(() => randomNumberBetween(2, 10));
+  target = this.challengeKeys.slice(0, 4).reduce((curr, acc) => curr + acc, 0);
   render() {
     return (
       <div className="game">
-        <div className="help">
-          Pick 4 numbers that sum to the target in 15 seconds
-        </div>
-        <div className="target">42</div>
+        <div className="help">Pick 4 numbers that sum to the target in 15 seconds</div>
+        <div className="target">{this.target}</div>
         <div className="challenge-numbers">
-          <Key value={8} />
-          <Key value={5} />
-          <Key value={12} />
-          <Key value={13} />
-          <Key value={5} />
-          <Key value={16} />
+          {this.challengeKeys.map((value, index) => <Key key={index} value={value} />)}
+                       {/* // if you do anything like reordering or removing elements
+                       // do not use index as a key */}
         </div>
         <div className="footer">
           <div className="timer-value">15</div>
@@ -25,3 +26,5 @@ export default class Game extends React.Component {
     );
   }
 }
+
+export default Game;
